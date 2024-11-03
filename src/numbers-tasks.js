@@ -186,8 +186,9 @@ function getParallelepipedDiagonal(a, b, c) {
  *   1678, 2  => 1700
  *   1678, 3  => 2000
  */
-function roundToPowerOfTen(/* num, pow */) {
-  throw new Error('Not implemented');
+function roundToPowerOfTen(num, pow) {
+  const power = 10 ** pow;
+  return Math.round(num / power) * power;
 }
 
 /**
@@ -226,8 +227,14 @@ function isPrime(/* n */) {
  *   toNumber(42, 0) => 42
  *   toNumber(new Number(42), 0) => 42
  */
-function toNumber(/* value, def */) {
-  throw new Error('Not implemented');
+function toNumber(value, def) {
+  let result;
+  if (Number.isNaN(Number(value))) {
+    result = def;
+  } else {
+    result = Number(value);
+  }
+  return result;
 }
 
 /**
@@ -241,8 +248,8 @@ function toNumber(/* value, def */) {
  *   -2 => -8
  *   0  => 0
  */
-function getCube(/* num */) {
-  throw new Error('Not implemented');
+function getCube(num) {
+  return num ** 3;
 }
 
 /**
@@ -258,8 +265,26 @@ function getCube(/* num */) {
  *   3  => 2
  *   10 => 55
  */
-function getFibonacciNumber(/* index */) {
-  throw new Error('Not implemented');
+function getFibonacciNumber(index) {
+  let res;
+  let a = 0;
+  let b = 1;
+
+  if (index === 0) {
+    res = 0;
+  }
+
+  if (index === 1) {
+    res = 1;
+  }
+
+  for (let i = 2; i <= index; i += 1) {
+    res = a + b;
+    a = b;
+    b = res;
+  }
+
+  return res;
 }
 
 /**
@@ -273,8 +298,13 @@ function getFibonacciNumber(/* index */) {
  *   10 => 55 // (1+2+3+...+10)
  *   1  => 1
  */
-function getSumToN(/* n */) {
-  throw new Error('Not implemented');
+function getSumToN(n) {
+  let sum = 0;
+  for (let i = 0; i <= n; i += 1) {
+    sum += i;
+  }
+
+  return sum;
 }
 
 /**
@@ -288,8 +318,16 @@ function getSumToN(/* n */) {
  *   202 => 4  // (2+0+2)
  *   5   => 5  // 5
  */
-function getSumOfDigits(/* num */) {
-  throw new Error('Not implemented');
+function getSumOfDigits(num) {
+  const a = num
+    .toString()
+    .split('')
+    .map((b) => Number(b))
+    .reduce((accum, item) => {
+      return accum + item;
+    }, 0);
+
+  return a;
 }
 
 /**
